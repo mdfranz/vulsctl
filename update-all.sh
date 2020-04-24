@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source env.sh
+source ./env.sh
 
 ./oval.sh --redhat && \
 ./oval.sh --amazon && \

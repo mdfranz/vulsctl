@@ -55,8 +55,8 @@
     {
       "type": "shell",
       "inline": [
-		    "cd $HOME && git clone https://github.com/mdfranz/vulsctl.git",
-		    "cd vulsctl && sudo ./update-all.sh" ]
+        "cd $HOME && git clone https://github.com/mdfranz/vulsctl.git",
+        "cd vulsctl && sudo ./update-all.sh" ]
     }
   ]
 }
