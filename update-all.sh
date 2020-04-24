@@ -1,5 +1,7 @@
 #!/bin/sh
 
+source env.sh
+
 ./oval.sh --redhat && \
 ./oval.sh --amazon && \
 ./oval.sh --debian && \

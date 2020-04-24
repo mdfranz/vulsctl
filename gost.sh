@@ -11,11 +11,11 @@ shift
 docker pull vuls/gost
 
 case "$target" in
-	--redhat) docker run --rm \
+	--redhat) docker run $DOCKER_ARGS \
 		-v ${PWD}:/vuls \
 		vuls/gost fetch ${@} redhat
 		;;
-	--debian) docker run --rm \
+	--debian) docker run $DOCKER_ARGS \
 		-v ${PWD}:/vuls \
 		vuls/gost fetch ${@} debian
 		;;

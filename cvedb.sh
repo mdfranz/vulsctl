@@ -12,13 +12,13 @@ if [ ! -e ./cve.sqlite3 ]; then
 fi
 
 for i in `seq 2002 $(date +"%Y")`; do \
-    docker run --rm \
+    docker run $DOCKER_ARGS \
     -v $PWD:/vuls \
     vuls/go-cve-dictionary fetchnvd -years $i; \
 done
 
 for i in `seq 1998 $(date +"%Y")`; do \
-    docker run --rm  \
+    docker run  \
     -v $PWD:/vuls \
     vuls/go-cve-dictionary fetchjvn -years $i; \
 done

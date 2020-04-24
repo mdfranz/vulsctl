@@ -11,23 +11,23 @@ shift
 docker pull vuls/goval-dictionary
 
 case "$target" in
-	--redhat) docker run --rm  \
+	--redhat) docker run $DOCKER_ARGS \
 		-v $PWD:/vuls \
 		vuls/goval-dictionary fetch-redhat ${@} 6 7 8 
 		;;
-	--amazon) docker run --rm  \
+	--amazon) docker run $DOCKER_ARGS \
 		-v $PWD:/vuls \
 		vuls/goval-dictionary fetch-amazon ${@} 
 		;;
-	--debian) docker run --rm  \
+	--debian) docker run $DOCKER_ARGS  \
 		-v $PWD:/vuls \
 		vuls/goval-dictionary fetch-debian ${@} 8 9 10
 		;;
-	--ubuntu) docker run --rm  \
+	--ubuntu) docker run $DOCKER_ARGS \
 		-v $PWD:/vuls \
 		vuls/goval-dictionary fetch-ubuntu ${@} 16 18 
 		;;
-	--alpine) docker run --rm  \
+	--alpine) docker run $DOCKER_ARGS  \
 		-v $PWD:/vuls \
 		vuls/goval-dictionary fetch-alpine ${@} 3.3 3.4 3.5 3.6 3.7 3.8 3.9 3.10
 		;;
