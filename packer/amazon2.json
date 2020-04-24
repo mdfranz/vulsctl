@@ -1,0 +1,62 @@
+{
+  "variables": {
+     "aws_access_key": "",
+     "aws_secret_key": "" 
+  },
+
+  "builders": [ 
+    {
+      "type": "amazon-ebs",
+      "region": "us-east-2",
+      "access_key": "{{user `aws_access_key`}}",
+      "secret_key": "{{user `aws_secret_key`}}",
+
+      "instance_type": "t2.large",
+      "ssh_username": "ec2-user",
+      "ami_name": "vulns-amazonlinux2-{{timestamp}}",
+      "source_ami_filter": { 
+        "filters": {
+          "virtualization-type": "hvm",
+          "name": "amzn2-ami-minimal-hvm-2.0.*-x86_64-ebs",
+          "root-device-type": "ebs" 
+       },
+       "owners": ["137112412989", "591542846629", "801119661308", "102837901569", "013907871322", "206029621532", "286198878708", "443319210888"],
+       "most_recent": true
+      },
+      "launch_block_device_mappings": [ 
+        {
+          "device_name": "/dev/xvda",
+          "volume_type": "gp2",
+          "volume_size": 40,
+          "delete_on_termination": true
+        }
+      ],
+      "ami_block_device_mappings": [
+        {
+          "device_name": "/dev/xvda",
+          "volume_type": "gp2",
+          "volume_size": 40,
+          "delete_on_termination": true
+        }
+      ]
+   }
+  ],
+
+  "provisioners": [ 
+    {
+      "type": "shell",
+      "inline": [
+        "sudo yum -y update && sync && sudo yum -y upgrade && sync",
+        "sleep 3; sudo amazon-linux-extras install docker",
+        "sudo service docker start && sudo usermod -a -G docker ec2-user ",
+        "sleep 3; sudo yum -y install git" 
+      ]
+    }, 
+    {
+      "type": "shell",
+      "inline": [
+		    "cd $HOME && git clone https://github.com/mdfranz/vulsctl.git",
+		    "cd vulsctl && sudo ./update-all.sh" ]
+    }
+  ]
+}
