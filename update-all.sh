@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source ./env.sh
+export DOCKER_ARGS="--rm "
 
 ./oval.sh --redhat && \
 ./oval.sh --amazon && \
@@ -11,3 +11,4 @@ source ./env.sh
 ./gost.sh --debian && \
 ./cvedb.sh && \
 ./exploitdb.sh
+

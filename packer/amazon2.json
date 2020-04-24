@@ -47,7 +47,7 @@
       "type": "shell",
       "inline": [
         "sudo yum -y update && sync && sudo yum -y upgrade && sync",
-        "sleep 3; sudo amazon-linux-extras install docker",
+        "sudo amazon-linux-extras install docker",
         "sudo service docker start && sudo usermod -a -G docker ec2-user ",
         "sleep 3; sudo yum -y install git" 
       ]
